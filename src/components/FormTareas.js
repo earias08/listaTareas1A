@@ -42,7 +42,7 @@ const FormTareas = () => {
         </form>
       </div>
       <section className='container my-5'>
-      <Listatarea></Listatarea>
+      <Listatarea arregloTareas={tareas}></Listatarea>
       </section>
     </Fragment>
   );
