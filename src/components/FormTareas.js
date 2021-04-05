@@ -21,6 +21,11 @@ const FormTareas = () => {
     setTareaIndividual('');
   };
 
+  const borrarTarea = (nombre) =>{
+    let arregloModificado = tareas.filter((dato)=> dato !== nombre);
+    setTareas(arregloModificado);
+  }
+
   return (
     // aqui puedo escribir logica
     <Fragment>
@@ -42,7 +47,7 @@ const FormTareas = () => {
         </form>
       </div>
       <section className='container my-5'>
-      <Listatarea arregloTareas={tareas}></Listatarea>
+      <Listatarea arregloTareas={tareas} borrarTarea={borrarTarea}></Listatarea>
       </section>
     </Fragment>
   );
