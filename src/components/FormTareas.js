@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
+import Listatarea from "./Listatarea";
 
 const FormTareas = () => {
   // logica de js
@@ -15,27 +16,35 @@ const FormTareas = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // guardar una tarea en el arreglo de tareas
-    setTareas([...tareas,tareaIndividual])
+    setTareas([...tareas,tareaIndividual]);
+    // limpiar el input
+    setTareaIndividual('');
   };
 
   return (
     // aqui puedo escribir logica
-    <div className="container d-flex justify-content-center">
-      {/* codigo html */}
-      <form className="w-75 my-5" onSubmit={handleSubmit}>
-        <div className="mb-3 d-flex">
-          <input
-            type="text"
-            placeholder="Ingrese una tarea"
-            className="form-control"
-            onChange={(e) => setTareaIndividual(e.target.value)}
-          />
-          <button className="btn btn-outline-light" type="submit">
-            Agregar
-          </button>
-        </div>
-      </form>
-    </div>
+    <Fragment>
+      <div className="container d-flex justify-content-center">
+        {/* codigo html */}
+        <form className="w-75 my-5" onSubmit={handleSubmit}>
+          <div className="mb-3 d-flex">
+            <input
+              type="text"
+              placeholder="Ingrese una tarea"
+              className="form-control"
+              onChange={(e) => setTareaIndividual(e.target.value)}
+              value={tareaIndividual}
+            />
+            <button className="btn btn-outline-light" type="submit">
+              Agregar
+            </button>
+          </div>
+        </form>
+      </div>
+      <section className='container my-5'>
+      <Listatarea></Listatarea>
+      </section>
+    </Fragment>
   );
 };
 
