@@ -1,11 +1,21 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import Listatarea from "./Listatarea";
 
 const FormTareas = () => {
   // logica de js
+  let tareasLocalStorage = JSON.parse(localStorage.getItem('arregloTareas'));
+  if(!tareasLocalStorage){
+    tareasLocalStorage= [];
+  }
   // creamos los state
-  const [tareas, setTareas] = useState([]);
+  const [tareas, setTareas] = useState(tareasLocalStorage);
   const [tareaIndividual, setTareaIndividual] = useState("");
+
+  useEffect(()=>{
+    // aqui va toda la logica que quiero ejecutar en montaje y actualizacion
+    console.log('ejecutando el ciclo de vida');
+    localStorage.setItem('arregloTareas', JSON.stringify(tareas))
+  },[tareas]);
 
   //   const guardarTarea = (e) =>{
   //     console.log(e.target.value);
@@ -22,7 +32,7 @@ const FormTareas = () => {
   };
 
   const borrarTarea = (nombre) =>{
-    let arregloModificado = tareas.filter((dato)=> dato !== nombre);
+    let arregloModificado = tareas.filter((valor)=> valor !== nombre);
     setTareas(arregloModificado);
   }
 
